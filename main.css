@@ -6,7 +6,8 @@ body{
   height: 150px;
   font-size: 1.2em;
   font-family: serif;
-} 
+}
+
 /*styled-table*/
 .styled-table {
     border-collapse: collapse;
@@ -15,6 +16,7 @@ body{
     font-family: sans;
     min-width: 200px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
 }
 
 .styled-table thead tr {
@@ -66,10 +68,31 @@ body{
     text-decoration: none;
     transition-duration: 0.4s;
   }
+
+  .navbar input {
+    font-size: 1em;
+    float: left;
+    display: block;
+    color: #353535;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition-duration: 0.4s;
+    background: #aaffa7;
+    outline: none;
+    border: none;
+    width:100%;
+  }
   .navbar a:hover {
     background: #aaffa7;
     color: white;
     text-decoration: underline;
+  }
+  .navbar input:hover {
+    background: #aaffa7;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   .navbar tbody td{
