@@ -20,6 +20,38 @@
 		mode=1;
 	}
     $(function() {
+		$(".row-input").change(
+			function(){
+
+				let first=$(this).parent().parent();//.children("first").children("first")
+				let cur_table= first.attr("id");
+				var fields=" (";
+				var values=" (";
+				first.children("td").each(
+					function(){
+						let input_elm=$(this).children().first("input");
+						fields+=input_elm.attr("id")+ ", ";
+						values+='"'+input_elm.val()+ '"'+", ";
+					}
+				)
+				fields=fields.slice(0,-2)+")";
+				values=values.slice(0,-2)+")";
+				let sql_command="insert into "+cur_table+fields+" values"+values;
+				$("#query").val(sql_command);
+				//alert(fields);
+				//alert(values);
+				//alert($("#query").val());
+				//find set of field names
+			}
+		)
+
+		$(".hidden-submit").click(function()
+		{
+			//trigger this table to update query
+			$(this).parent().parent().prev().children().eq(0).children().eq(0).change();
+			$("#form").submit();
+		})
+
 		$(".table-title").click(function(){
 			$(this).next().fadeToggle("slow");
 		});
@@ -93,7 +125,7 @@
 <?php
 main();
 
-function draw_table($title,$arr)
+function draw_table($title,$arr,$draw_add_line=true)
 {
 		if (strlen($title)>0){
 			echo "<div class=\"div-table\" id=$title><b class=\"table-title\">Table name: $title</b>";
@@ -112,10 +144,33 @@ function draw_table($title,$arr)
 			echo "</tr>";
 	}
 
-	echo "</table></div>";
+	if($draw_add_line)
+	{
+		draw_option($arr[0],$title);
 	}
+	echo "</table></div>";
+}
 
-	function main(){
+function draw_option($one_line,$title)
+{
+	//add row template command
+
+	//print another room for add-row option
+	echo "<tr id=\"$title\">";
+	foreach ($one_line as $key=>$value) {
+		//add table name to identify
+		$len=strlen($key);
+		echo "<td><input size=\"$len\" class=\"row-input\" id=$key type=\"txt\" placeholder=$key></td>";
+	}
+	echo "</tr>";
+	echo "<tr><td><input type=\"button\" class=\"hidden-submit\" id=\"_add-$title\" value=\"Add row:\"></td>";
+	for ($i=0; $i <count($one_line)-1 ; $i++) { 
+		echo "<td></td>";
+	}
+	echo "</tr>";
+}
+
+function main(){
 
 	//connection data
 	$servername="localhost";
@@ -131,10 +186,12 @@ function draw_table($title,$arr)
 	}
 	else{
 		//create query textbox and button
-		echo '<form method="post" action="">
+		echo '<form id="form" method="post" action="">
 			<textarea type="text" placeholder="Enter your query here" id="query" name="query"></textarea><br><br>
 			<input type="submit" value="See query results:" class="btn">
 		</form>';
+
+
 		//collect all tables names to view options
 		$sql="show tables";
 		$res=$conn->query($sql);
@@ -143,13 +200,13 @@ function draw_table($title,$arr)
 		{
 			//remember to print the first line
 			$rows=$res->fetch_all();
-			echo "<table class=\"navbar\"><tr value=\"15\">";
-			echo "<td><input class=\"table-select\" type=\"button\" value=\"view all tables\"></input></td>";
+			echo "<table class=\"navbar\"><tr>";
+			echo "<td><input class=\"table-select\" type=\"button\" value=\"All tables\"></td>";
 			foreach ($rows as $row)
 			{
 				foreach ($row as $value) {
 					$tables[]=$value;
-					echo "<td><input class=\"table-select\" type=\"button\" value=$value></input></td>";
+					echo "<td><input class=\"table-select\" type=\"button\" value=$value></td>";
 				}
 			}
 
@@ -185,7 +242,7 @@ function draw_table($title,$arr)
 					echo "<b class=\"alert-text\">Query results: $sql</b><br>";
 				//remember to print the first line
 					$rows=$res->fetch_all(MYSQLI_ASSOC);
-					draw_table("",$rows);
+					draw_table("",$rows,false);
 				}
 
 				else

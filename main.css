@@ -49,6 +49,19 @@ body{
     background-color: #bf35ff;
 }
 
+.row-input{
+    float: left;
+    display: block;
+    text-align: left;
+    /*padding: 14px 16px;*/
+    text-decoration: none;
+    outline: none;
+    box-sizing: border-box;
+}
+.hidden-input{
+    display:none;
+}
+
 /* navbar */
 .navbar {
     overflow: hidden;
@@ -59,15 +72,7 @@ body{
     font-size: 1.2em;
     transition-duration: 0.4s;
   }
-  .navbar a {
-    float: left;
-    display: block;
-    color: #353535;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition-duration: 0.4s;
-  }
+
 
   .navbar input {
     font-size: 1em;
@@ -83,6 +88,7 @@ body{
     border: none;
     width:100%;
   }
+
   .navbar a:hover {
     background: #aaffa7;
     color: white;
