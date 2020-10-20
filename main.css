@@ -1,0 +1,110 @@
+body{
+    padding-top: 55px;
+}
+ textarea {
+  width: 300px;
+  height: 150px;
+  font-size: 1.2em;
+  font-family: serif;
+} 
+/*styled-table*/
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.1em;
+    font-family: sans;
+    min-width: 200px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th, .styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: thin solid #dddddd;
+}
+.styled-table tr:hover {
+    background-color: #c2c2c2;
+}
+.styled-table tbody tr:nth-of-type(odd) {
+    background-color: #aaffa7;
+}
+.styled-table tbody tr:nth-of-type(odd):hover {
+    background-color: #7bff76;
+}
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #00ac78;
+}
+.styled-table tbody tr:first-of-type {
+    background-color: #dd94ff;
+}
+.styled-table tbody tr:first-of-type:hover {
+    background-color: #bf35ff;
+}
+
+/* navbar */
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    font-size: 1.2em;
+    transition-duration: 0.4s;
+  }
+  .navbar a {
+    float: left;
+    display: block;
+    color: #353535;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition-duration: 0.4s;
+  }
+  .navbar a:hover {
+    background: #aaffa7;
+    color: white;
+    text-decoration: underline;
+  }
+
+  .navbar tbody td{
+    background-color: #aaffa7;
+}
+/*btn*/
+.btn {
+    transition-duration: 0.4s;
+    color: #000000;
+    border-color: #000000;
+    font-size: 15px;
+   background-color:#aaffa7 ;
+   cursor: pointer;
+
+  }
+  .btn:hover {
+    color: #ffffff;
+    border-color: #000000;
+    cursor: pointer;
+
+  }
+
+/* alert text */
+.alert-text{
+    color:#615eff;
+    font-size:40px;
+}
+/* table title */
+.table-title{
+    color:#965eff;
+    font-size:28px;
+    text-decoration: dashed underline;
+}
+.new_table_row{
+    size: 10;
+    font-size: 12em;
+    font-family: serif;
+}
