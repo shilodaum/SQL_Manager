@@ -73,12 +73,9 @@
 			}
 		}
 
-
-		$(".table-select").click(function()
+$(".all-table-select").click(function()
 		{
 			let val=$(this).val();
-			if(val=="view all tables")
-			{
 				if(mode==1)
 				{
 					window.location.replace("");
@@ -100,11 +97,12 @@
 					function(){
 						$(this).next().slideDown("slow");
 					})
-
 				}
-			}
-			else
-			{
+		}
+		);
+		$(".table-select").click(function()
+		{
+			let val=$(this).val();
 				if (mode==0||mode==2)
 				{
 					$(".div-table").each(function(){
@@ -113,8 +111,6 @@
 					)
 					$("#"+val).show();
 				}
-			}
-
 		}
 		);
     });
@@ -201,7 +197,7 @@ function main(){
 			//remember to print the first line
 			$rows=$res->fetch_all();
 			echo "<table class=\"navbar\"><tr>";
-			echo "<td><input class=\"table-select\" type=\"button\" value=\"All tables\"></td>";
+			echo "<td><input class=\"all-table-select\" type=\"button\" value=\"All tables\"></td>";
 			foreach ($rows as $row)
 			{
 				foreach ($row as $value) {
