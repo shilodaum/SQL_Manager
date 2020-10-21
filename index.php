@@ -173,7 +173,7 @@ function draw_option($one_line,$title)
 function main(){
 
 	//connection data
-	$servername="localhost";
+	$servername="127.0.0.1";
 	$username="root";
 	$password="";
 	$dbname="passenger_food";
